@@ -5,6 +5,7 @@ import Apollo from "../public/icon.svg";
 import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { LuDot } from "react-icons/lu";
+import { FaCheckCircle } from "react-icons/fa";
 
 import {
   Stack,
@@ -40,6 +41,9 @@ export default function Home() {
     } else {
       // alert("Success");
       onOpen();
+      setTimeout(() => {
+        onClose();
+      }, 2000);
     }
   };
 
@@ -90,7 +94,7 @@ export default function Home() {
                       <NumberDecrementStepper />
                     </NumberInputStepper>
                   </NumberInput>
-                  <Input variant='flushed' placeholder='Hospital Registration Date' isRequired/>
+                  <Input type='date' variant='flushed' placeholder='Hospital Registration Date' isRequired/>
                   <NumberInput variant='flushed'>
                     <NumberInputField placeholder='Number of Ambulance available' isRequired/>
                     <NumberInputStepper>
@@ -115,21 +119,12 @@ export default function Home() {
       <p className='flex flex-row font-poppins text-sm text-gray-400 hover:text-sky-300 transition-all'><LuDot />  Terms and Condition privacy policy</p>
     </section>
     <>
-      <Modal isOpen={isOpen} onClose={onClose} colorScheme='whiteAlpha'>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
+      <Modal isCentered motionPreset='slideInTop' isOpen={isOpen} onClose={onClose} colorScheme='whiteAlpha'>
+        <ModalOverlay backdropFilter='blur(10px)'/>
+        <ModalContent minWidth='max-content' padding='2rem'>
           <ModalBody>
-            
+          <p className='  text-black font-poppins text-2xl flex flex-col gap-10 justify-center items-center'><FaCheckCircle className=' h-10 text-green-400 font-semibold text-6xl'/>Your Registration has been Successfull</p>
           </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </>
