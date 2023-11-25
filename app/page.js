@@ -4,6 +4,7 @@ import Hero from "../public/herosvg.svg";
 import Apollo from "../public/icon.svg";
 import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { LuDot } from "react-icons/lu";
 
 import {
   Stack,
@@ -14,10 +15,20 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react"
 
 export default function Home() {
   const [isLogin, setIslogin] = useState(false);
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -27,8 +38,8 @@ export default function Home() {
     if (password !== confirmPassword) {
       alert('Passwords do not match');
     } else {
-      alert("Success");
-
+      // alert("Success");
+      onOpen();
     }
   };
 
@@ -68,10 +79,10 @@ export default function Home() {
             <div className={`flex flex-row gap-8 w-full  items-center justify-evenly text-black transition-all duration-500 ${isLogin ? 'opacity-0' : 'opacity-100'}`}> {/* This div will be shown when isLogin is false */}
               {/* SignUp Form */}
                 <Stack className='w-1/2 h-full gap-4'>
-                  <Input variant='flushed'  placeholder='Hospital Name' />
-                  <Input variant='flushed' placeholder='Address' />
-                  <Input variant='flushed' placeholder='City' />
-                  <Input variant='flushed' placeholder='State' />
+                  <Input variant='flushed'  placeholder='Hospital Name' isRequired/>
+                  <Input variant='flushed' placeholder='Address' isRequired/>
+                  <Input variant='flushed' placeholder='City' isRequired/>
+                  <Input variant='flushed' placeholder='State' isRequired/>
                   <NumberInput variant='flushed'>
                     <NumberInputField placeholder='Pincode' />
                     <NumberInputStepper>
@@ -79,9 +90,9 @@ export default function Home() {
                       <NumberDecrementStepper />
                     </NumberInputStepper>
                   </NumberInput>
-                  <Input variant='flushed' placeholder='Hospital Registration Date' />
+                  <Input variant='flushed' placeholder='Hospital Registration Date' isRequired/>
                   <NumberInput variant='flushed'>
-                    <NumberInputField placeholder='Number of Ambulance available'/>
+                    <NumberInputField placeholder='Number of Ambulance available' isRequired/>
                     <NumberInputStepper>
                       <NumberIncrementStepper />
                       <NumberDecrementStepper />
@@ -89,19 +100,39 @@ export default function Home() {
                   </NumberInput>
                 </Stack >
                 <Stack className='w-1/2 h-full gap-4'>
-                  <Input variant='flushed' placeholder='Email ID' />
-                  <Input variant='flushed' placeholder='Phone Number' />
-                  <Input variant='flushed' placeholder='Hospital Registration Number' />
-                  <Input variant='flushed' placeholder='Emergency-Ward Number' />
-                  <Button  leftIcon={<FaCloudUploadAlt />}>Registration Certificate Upload</Button>
-                  <Input variant='flushed' type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-                  <Input variant='flushed' type='password' placeholder='Confirm Password ' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+                  <Input type='email' variant='flushed' placeholder='Email ID' />
+                  <Input type="number" variant='flushed' placeholder='Phone Number' isRequired/>
+                  <Input type="number" variant='flushed' placeholder='Hospital Registration Number' isRequired/>
+                  <Input type="number" variant='flushed' placeholder='Emergency-Ward Number' isRequired/>
+                  <Button  leftIcon={<FaCloudUploadAlt />} isRequired>Registration Certificate Upload</Button>
+                  <Input isRequired variant='flushed' type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                  <Input isRequired variant='flushed' type='password' placeholder='Confirm Password ' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
                 </Stack >
             </div>
             <Button type="submit" size='xl' className=' py-3 px-6 text-white bg-gray-600 hover:bg-gray-800'>Sign Up</Button>
           </form>
       )}
+      <p className='flex flex-row font-poppins text-sm text-gray-400 hover:text-sky-300 transition-all'><LuDot />  Terms and Condition privacy policy</p>
     </section>
+    <>
+      <Modal isOpen={isOpen} onClose={onClose} colorScheme='whiteAlpha'>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant='ghost'>Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   </main>
   )
 }
