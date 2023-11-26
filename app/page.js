@@ -27,6 +27,7 @@ import {
 } from "@chakra-ui/react"
 
 import { LoginForm } from "./loginform";
+import Head from 'next/head';
 
 export default function Home() {
   const [isLogin, setIslogin] = useState(false);
@@ -51,6 +52,10 @@ export default function Home() {
 
   return (
   <main className='h-screen w-screen flex flex-row bg-white'>
+    <Head>
+      <title>Sign Up</title>
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    </Head>
     <section className='w-1/3 overflow-clip '>
       <Image 
         priority 
