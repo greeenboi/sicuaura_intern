@@ -11,7 +11,7 @@ export default function page () {
             <title>Dashboard</title>
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
-        <main>
+        <main className='bg-white w-screen h-screen'>
 
         </main>
     </>
