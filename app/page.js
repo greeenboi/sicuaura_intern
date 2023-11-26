@@ -26,6 +26,8 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react"
 
+import { LoginForm } from "./loginform";
+
 export default function Home() {
   const [isLogin, setIslogin] = useState(false);
 
@@ -74,9 +76,9 @@ export default function Home() {
         </div>
       </div>
       {isLogin ? (
-        <div className={`text-black flex flex-col items-center justify-evenly h-4/6 my-12 px-12 w-full shadow-xl rounded-lg transition-all duration-500 ${isLogin ? 'opacity-100' : 'opacity-0'}`}> {/* This div will be shown when isLogin is true */}
+        <div className={`text-black flex flex-col items-center justify-evenly h-4/6 my-12 px-12 w-2/3 shadow-xl rounded-lg transition-all duration-500 ${isLogin ? 'opacity-100' : 'opacity-0'}`}> {/* This div will be shown when isLogin is true */}
           {/* Login form */}
-          login
+          <LoginForm/>
         </div>
       ) : (
           <form className='w-full h-4/6 shadow-xl px-12 flex flex-col gap-4 justify-evenly items-center rounded-lg'  onSubmit={handleSubmit}>
@@ -116,7 +118,7 @@ export default function Home() {
             <Button type="submit" size='xl' className=' py-3 px-6 text-white bg-gray-600 hover:bg-gray-800'>Sign Up</Button>
           </form>
       )}
-      <p className='flex flex-row font-poppins text-sm text-gray-400 hover:text-sky-300 transition-all'><LuDot />  Terms and Condition privacy policy</p>
+      <p className='flex flex-row font-poppins text-sm text-gray-400 hover:text-sky-300 transition-all items-center hover:cursor-pointer'><LuDot />  Terms and Condition privacy policy</p>
     </section>
     <>
       <Modal isCentered motionPreset='slideInTop' isOpen={isOpen} onClose={onClose} colorScheme='whiteAlpha'>
