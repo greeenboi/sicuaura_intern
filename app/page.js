@@ -83,10 +83,10 @@ export default function Home() {
             <div className={`flex flex-row gap-8 w-full  items-center justify-evenly text-black transition-all duration-500 ${isLogin ? 'opacity-0' : 'opacity-100'}`}> {/* This div will be shown when isLogin is false */}
               {/* SignUp Form */}
                 <Stack className='w-1/2 h-full gap-4'>
-                  <Input variant='flushed'  placeholder='Hospital Name' isRequired/>
-                  <Input variant='flushed' placeholder='Address' isRequired/>
-                  <Input variant='flushed' placeholder='City' isRequired/>
-                  <Input variant='flushed' placeholder='State' isRequired/>
+                  <Input variant='flushed'  placeholder='Hospital Name' />
+                  <Input variant='flushed' placeholder='Address' />
+                  <Input variant='flushed' placeholder='City' />
+                  <Input variant='flushed' placeholder='State' />
                   <NumberInput variant='flushed'>
                     <NumberInputField placeholder='Pincode' />
                     <NumberInputStepper>
@@ -94,9 +94,9 @@ export default function Home() {
                       <NumberDecrementStepper />
                     </NumberInputStepper>
                   </NumberInput>
-                  <Input type='date' variant='flushed' placeholder='Hospital Registration Date' isRequired/>
+                  <Input type='date' variant='flushed' placeholder='Hospital Registration Date' />
                   <NumberInput variant='flushed'>
-                    <NumberInputField placeholder='Number of Ambulance available' isRequired/>
+                    <NumberInputField placeholder='Number of Ambulance available' />
                     <NumberInputStepper>
                       <NumberIncrementStepper />
                       <NumberDecrementStepper />
@@ -105,12 +105,12 @@ export default function Home() {
                 </Stack >
                 <Stack className='w-1/2 h-full gap-4'>
                   <Input type='email' variant='flushed' placeholder='Email ID' />
-                  <Input type="number" variant='flushed' placeholder='Phone Number' isRequired/>
-                  <Input type="number" variant='flushed' placeholder='Hospital Registration Number' isRequired/>
-                  <Input type="number" variant='flushed' placeholder='Emergency-Ward Number' isRequired/>
-                  <Button  leftIcon={<FaCloudUploadAlt />} isRequired>Registration Certificate Upload</Button>
-                  <Input isRequired variant='flushed' type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-                  <Input isRequired variant='flushed' type='password' placeholder='Confirm Password ' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+                  <Input type="number" variant='flushed' placeholder='Phone Number' />
+                  <Input type="number" variant='flushed' placeholder='Hospital Registration Number' />
+                  <Input type="number" variant='flushed' placeholder='Emergency-Ward Number' />
+                  <Button  leftIcon={<FaCloudUploadAlt />} >Registration Certificate Upload</Button>
+                  <Input  variant='flushed' type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                  <Input  variant='flushed' type='password' placeholder='Confirm Password ' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
                 </Stack >
             </div>
             <Button type="submit" size='xl' className=' py-3 px-6 text-white bg-gray-600 hover:bg-gray-800'>Sign Up</Button>
