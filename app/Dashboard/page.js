@@ -31,8 +31,9 @@ const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.
 export default function Dashboard () {
   const [hospitalData, setHospitalData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchAllData = async () => {
       let { data, error } = await supabase.from('hospitalreg').select('*');
       if (error) {
         console.error('Error: ', error);
@@ -42,8 +43,23 @@ export default function Dashboard () {
         setIsLoading(false);
       }
     };
-    fetchData();
+    fetchAllData();
   }, []);
+
+  const fetchSearchData = async () => {
+    setIsLoading(true);
+    let { data, error } = await supabase
+      .from('hospitalreg')
+      .select('*')
+      .ilike('hospital_name', `%${searchTerm}%`);
+    if (error) {
+      console.error('Error: ', error);
+      setIsLoading(false);
+    } else {
+      setHospitalData(data);
+      setIsLoading(false);
+    }
+  }
 
   return (
     <>
@@ -60,8 +76,8 @@ export default function Dashboard () {
               <div className=' flex flex-row w-full h-fit text-black justify-between'>
                 <h1 className=' font-montserrat font-medium text-4xl'>Hospital Registrations</h1>
                 <div className='flex items-center flex-row '>
-                  <Input placeholder="Search" className='w-full h-fit ml-4 p-2 border-r-0 shadow-md' size='md' />
-                  <Button className='p-0 bg-white hover:bg-white active:bg-gray-400 right-10 z-10 hover:opacity-70'  ><CiSearch /></Button>
+                  <Input placeholder="Search" className='w-full h-fit ml-4 p-2 border-r-0 shadow-md' size='md' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
+                  <Button className='p-0 bg-white hover:bg-white active:bg-gray-400 right-10 z-10 hover:opacity-70' onClick={fetchSearchData} ><CiSearch /></Button>
                   <Button className='p-0 hover:bg-white active:bg-gray-400 shadow-md ml-12' size="md" ><IoFilterOutline /></Button>
                 </div>
               </div>
@@ -71,7 +87,7 @@ export default function Dashboard () {
                     <Spinner size='xl' />
                   </ section>
                 ) : (
-                  <TableContainer className='text-black my-12'>
+                  <TableContainer className='text-black my-12 text-clip'>
                     <Table variant='striped' colorScheme='gray'>
                       <TableCaption>Made with 💖 by Suvan GS</TableCaption>
                       <Thead className='bg-teal-300 border rounded-xl my-2'>
