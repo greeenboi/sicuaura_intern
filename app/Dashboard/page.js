@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head'
 import { Header } from './Header'
 import Image from 'next/image'
-
+import { FaSortAmountDown } from "react-icons/fa";
 import Icon from '../../public/image 18.svg'
 
 import {
@@ -32,6 +32,7 @@ export default function Dashboard () {
   const [hospitalData, setHospitalData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isFiltered, setIsFiltered] = useState(false);
   useEffect(() => {
     const fetchAllData = async () => {
       let { data, error } = await supabase.from('hospitalreg').select('*');
@@ -61,6 +62,23 @@ export default function Dashboard () {
     }
   }
 
+  const fetchFilteredData = async () => {
+    setIsLoading(true);
+
+    let { data, error } = await supabase
+      .from('hospitalreg')
+      .select('*')
+      .order('date_reg', { ascending: true });
+    if (error) {
+      console.error('Error: ', error);
+      setIsLoading(false);
+    } else {
+      setHospitalData(data);
+      setIsFiltered(true);
+      setIsLoading(false);
+    }
+  }
+
   return (
     <>
         <Header />
@@ -78,7 +96,15 @@ export default function Dashboard () {
                 <div className='flex items-center flex-row '>
                   <Input placeholder="Search" className='w-full h-fit ml-4 p-2 border-r-0 shadow-md' size='md' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
                   <Button className='p-0 bg-white hover:bg-white active:bg-gray-400 right-10 z-10 hover:opacity-70' onClick={fetchSearchData} ><CiSearch /></Button>
-                  <Button className='p-0 hover:bg-white active:bg-gray-400 shadow-md ml-12' size="md" ><IoFilterOutline /></Button>
+                  {
+                    isFiltered ? (
+                      <Button className='p-0 hover:bg-white active:bg-gray-400 shadow-md ml-12' size="md" onClick={() => window.location.reload()}><FaSortAmountDown /></Button>
+                    ) : (
+                      <Button className='p-0 hover:bg-white active:bg-gray-400 shadow-md ml-12' too size="md" onClick={fetchFilteredData}><IoFilterOutline /></Button>
+                    )
+                  }
+                  
+
                 </div>
               </div>
               {isLoading ? 
