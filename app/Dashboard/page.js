@@ -34,7 +34,7 @@ export default function page () {
           <div className='flex flex-row-reverse w-4/6 h-fit '>
             <Image src={Icon} alt="Cool Logo" width={83} height={83} />
           </div>
-          <section className='w-4/6 h-max '>
+          <section className='w-11/12 h-max '>
               <div className=' flex flex-row w-full h-fit text-black justify-between'>
                 <h1 className=' font-montserrat font-medium text-4xl'>Hospital Registrations</h1>
                 <div className='flex items-center flex-row '>
@@ -46,36 +46,35 @@ export default function page () {
               <TableContainer className='text-black my-12'>
                 <Table variant='striped' colorScheme='gray'>
                   <TableCaption>Imperial to metric conversion factors</TableCaption>
-                  <Thead>
-                    <Tr>
-                      <Th>To convert</Th>
-                      <Th>into</Th>
-                      <Th isNumeric>multiply by</Th>
+                  <Thead className='bg-teal-300 border rounded-xl my-2'>
+                    <Tr >
+                      <Th>No.</Th>
+                      <Th>Date & Time</Th>
+                      <Th >Hospital Name</Th>
+                      <Th >Email</Th>
+                      <Th >Address</Th>
+                      <Th >Phone No.</Th>
+                      <Th >City</Th>
+                      <Th >State</Th>
+                      <Th >Pincode</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
                     <Tr>
                       <Td>inches</Td>
+                      <Td>inches</Td>
+                      <Td>inches</Td>
+                      <Td>inches</Td>
+                      <Td>inches</Td>
+                      <Td>inches</Td>
+                      <Td>inches</Td>
                       <Td>millimetres (mm)</Td>
                       <Td isNumeric>25.4</Td>
                     </Tr>
-                    <Tr>
-                      <Td>feet</Td>
-                      <Td>centimetres (cm)</Td>
-                      <Td isNumeric>30.48</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>yards</Td>
-                      <Td>metres (m)</Td>
-                      <Td isNumeric>0.91444</Td>
-                    </Tr>
+                    
                   </Tbody>
                   <Tfoot>
-                    <Tr>
-                      <Th>To convert</Th>
-                      <Th>into</Th>
-                      <Th isNumeric>multiply by</Th>
-                    </Tr>
+                    
                   </Tfoot>
                 </Table>
               </TableContainer>
