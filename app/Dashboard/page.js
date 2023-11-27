@@ -45,7 +45,7 @@ export default function page () {
               </div>
               <TableContainer className='text-black my-12'>
                 <Table variant='striped' colorScheme='gray'>
-                  <TableCaption>Imperial to metric conversion factors</TableCaption>
+                  <TableCaption>Made with 💖 by Suvan GS</TableCaption>
                   <Thead className='bg-teal-300 border rounded-xl my-2'>
                     <Tr >
                       <Th>No.</Th>
