@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import React from 'react'
 import { useEffect, useState } from 'react';
 import Head from 'next/head'
@@ -28,7 +28,7 @@ import { createClient } from '@supabase/supabase-js';
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
 
-export default function page () {
+export default function Dashboard () {
   const [hospitalData, setHospitalData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
