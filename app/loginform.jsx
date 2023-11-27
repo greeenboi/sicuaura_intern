@@ -17,16 +17,17 @@ export function LoginForm () {
     const [ allowCamera, setAllowCamera ] = useState(false);
     const [ confirmPhoto, setConfirmPhoto ] = useState(false);
     const router = useRouter()
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if(confirmPhoto){
-            alert('Please wait while we verify your details');
+            setLoading(true);
             setTimeout(() => {
-                alert('Details verified. Redirecting to dashboard');
+                setLoading(false);
                 router.push('/Dashboard');
-            }, 5000);
+            }, 2000);
         } 
-    }, [confirmPhoto]);
+    }, [confirmPhoto, setLoading]);
 
   return (
     
@@ -55,7 +56,7 @@ export function LoginForm () {
                     {
                         allowCamera ?
                         (
-                            <Webcamcomp setConfirmPhoto={setConfirmPhoto}/>
+                            <Webcamcomp setConfirmPhoto={setConfirmPhoto} loading={loading} />
                         ) : (
                             <>
                                 <div className='text-6xl font-thin hover:cursor-pointer text-gray-500 h-full w-10/12 border bg-gray-300 rounded-xl flex flex-col justify-center items-center'>

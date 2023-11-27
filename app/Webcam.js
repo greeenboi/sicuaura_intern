@@ -28,7 +28,20 @@ export function Webcamcomp(props) {
         {imgSrc ? (
           <div className="flex flexs-row gap-4">
             <Button className=' px-4 py-2 mt-24 mb-4 text-black bg-slate-300 hover:bg-slate-700 hover:text-white transition-all' size="md" onClick={retake}>Retake photo</Button>
-            <Button className=' px-4 py-2 mt-24 mb-4 bg-slate-700 hover:bg-slate-300 text-gray-300 hover:text-black transition-all' size="md" onClick={() => props.setConfirmPhoto(true)}>Continue</Button>
+            {props.loading ? 
+              (
+                <Button
+                  isLoading
+                  loadingText='Submitting'
+                  colorScheme='teal'
+                  variant='outline'
+                  className=" px-4 py-2 mt-24 mb-4"
+                >
+                  Submit
+                </Button>
+                ) : (
+                <Button className=' px-4 py-2 mt-24 mb-4 bg-slate-700 hover:bg-slate-300 text-gray-300 hover:text-black transition-all' size="md" onClick={() => props.setConfirmPhoto(true)}>Continue</Button> 
+            )}
           </div>
         ) : (
           <Button className=' px-4 py-2 mt-24 mb-4 bg-slate-700 hover:bg-slate-300 text-gray-300 hover:text-black transition-all' size="md" onClick={capture}>Capture photo</Button>
